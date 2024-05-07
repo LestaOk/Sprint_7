@@ -1,7 +1,6 @@
 package ru.yandex.praktikum.courierHelpers;
 
 import io.qameta.allure.Step;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import ru.yandex.praktikum.Specification;
 import java.util.Map;

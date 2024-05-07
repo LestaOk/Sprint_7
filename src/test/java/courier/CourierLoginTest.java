@@ -1,5 +1,6 @@
+package courier;
+
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Test;
@@ -33,6 +34,7 @@ public class CourierLoginTest {
         courierId = check.loggedInSuccessfully(loginResponse);
     }
 
+    /* Тест ломает сервис - при попытке залогиниться без указания пароля возвращается Service unavailable*/
     @Test
     @DisplayName("Courier couldn't log in without password provided")
     public void courierLoginWithoutProvidedPasswordReturnsError() {

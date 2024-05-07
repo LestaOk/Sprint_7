@@ -1,5 +1,6 @@
+package courier;
+
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Test;
@@ -29,6 +30,7 @@ public class CourierCreationTest {
         check.createdSuccessfully(createResponse);
     }
 
+    /*Текст возвращаемого сообщения отличается от указанного в документации */
     @Test
     @DisplayName("Courier creation with existing login is prohibited")
     public void courierCreationWithExistingLoginNotPossible() {

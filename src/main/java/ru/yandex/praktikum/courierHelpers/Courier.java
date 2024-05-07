@@ -49,11 +49,19 @@ public class Courier {
     }
 
     public static Courier defaultCourier() {
-        return new Courier("login123", "password123", "name123");
+        return new Courier(
+                "login123",
+                "password123",
+                "name123"
+        );
     }
 
     public static Courier randomCourier() {
-        return new Courier(RandomStringUtils.randomAlphabetic(5, 10), "password123", RandomStringUtils.randomAlphabetic(5, 10));
+        return new Courier(
+                RandomStringUtils.randomAlphabetic(5, 10),
+                RandomStringUtils.randomAlphabetic(5, 10),
+                RandomStringUtils.randomAlphabetic(5, 10)
+        );
     }
 
     public static Courier invalidCourierWithoutLogin() {
