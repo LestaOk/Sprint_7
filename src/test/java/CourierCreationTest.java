@@ -15,7 +15,7 @@ public class CourierCreationTest {
     @After
     public void deleteCourier() {
         if (courierId != 0) {
-            Response deleted = client.deleteCourier(courierId);
+            ValidatableResponse deleted = client.deleteCourier(courierId);
             check.deletedSuccessfully(deleted);
         }
     }
@@ -45,7 +45,7 @@ public class CourierCreationTest {
     public void courierCreationWithoutProvidedLoginReturnsError() {
         var courier = Courier.invalidCourierWithoutLogin();
         ValidatableResponse createResponse = client.createCourier(courier);
-        check.missingData(createResponse);
+        check.missingDataOnCreation(createResponse);
     }
 
     @Test
@@ -53,6 +53,6 @@ public class CourierCreationTest {
     public void courierCreationWithoutProvidedPasswordReturnsError() {
         var courier = Courier.invalidCourierWithLoginOnly();
         ValidatableResponse createResponse = client.createCourier(courier);
-        check.missingData(createResponse);
+        check.missingDataOnCreation(createResponse);
     }
 }

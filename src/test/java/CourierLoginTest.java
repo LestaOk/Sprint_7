@@ -16,7 +16,7 @@ public class CourierLoginTest {
     @After
     public void deleteCourier() {
         if (courierId != 0) {
-            Response deleted = client.deleteCourier(courierId);
+            ValidatableResponse deleted = client.deleteCourier(courierId);
             check.deletedSuccessfully(deleted);
         }
     }
@@ -24,7 +24,6 @@ public class CourierLoginTest {
     @Test
     @DisplayName("Created courier should be able to log in")
     public void createdCourierLoggedInSuccessfully() {
-
         var courier = Courier.randomCourier();
         ValidatableResponse createResponse = client.createCourier(courier);
         check.createdSuccessfully(createResponse);
@@ -32,5 +31,57 @@ public class CourierLoginTest {
         var creds = CourierCredentials.from(courier);
         ValidatableResponse loginResponse = client.loginCourier(creds);
         courierId = check.loggedInSuccessfully(loginResponse);
+    }
+
+    @Test
+    @DisplayName("Courier couldn't log in without password provided")
+    public void courierLoginWithoutProvidedPasswordReturnsError() {
+        var courier = Courier.randomCourier();
+        ValidatableResponse createResponse = client.createCourier(courier);
+        check.createdSuccessfully(createResponse);
+
+        var login = courier.getLogin();
+        ValidatableResponse loginResponse = client.loginCourierOnlyWithLogin(login);
+        check.missingDataOnLogin(loginResponse);
+    }
+
+    @Test
+    @DisplayName("Courier couldn't log in without login provided")
+    public void courierLoginWithoutProvidedLoginReturnsError() {
+        var courier = Courier.randomCourier();
+        ValidatableResponse createResponse = client.createCourier(courier);
+        check.createdSuccessfully(createResponse);
+
+        var password = courier.getPassword();
+        ValidatableResponse loginResponse = client.loginCourierOnlyWithPassword(password);
+        check.missingDataOnLogin(loginResponse);
+    }
+
+    @Test
+    @DisplayName("Courier is not able to log in with invalid password provided")
+    public void courierLoginWithIvalidPasswordReturnsError() {
+        var courier = Courier.randomCourier();
+        ValidatableResponse createResponse = client.createCourier(courier);
+        check.createdSuccessfully(createResponse);
+
+        var creds = CourierCredentials.from(courier);
+        creds.setPassword("new_password");
+
+        ValidatableResponse loginResponse = client.loginCourierWithInvalidCreds(creds);
+        check.incorrectDataOnLogin(loginResponse);
+    }
+
+    @Test
+    @DisplayName("Courier is not able to log in with invalid login provided")
+    public void courierLoginWithIvalidLoginReturnsError() {
+        var courier = Courier.randomCourier();
+        ValidatableResponse createResponse = client.createCourier(courier);
+        check.createdSuccessfully(createResponse);
+
+        var creds = CourierCredentials.from(courier);
+        creds.setLogin("new_login");
+
+        ValidatableResponse loginResponse = client.loginCourierWithInvalidCreds(creds);
+        check.incorrectDataOnLogin(loginResponse);
     }
 }

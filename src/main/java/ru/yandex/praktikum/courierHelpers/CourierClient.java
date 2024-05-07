@@ -18,6 +18,33 @@ public class CourierClient extends Specification {
                 .then().log().all();
     }
 
+    @Step("Login courier with login only")
+    public ValidatableResponse loginCourierOnlyWithLogin(String courierLogin) {
+        return spec()
+                .body(Map.of("login", courierLogin))
+                .when()
+                .post(COURIER_PATH + "/login")
+                .then().log().all();
+    }
+
+    @Step("Login courier with password only")
+    public ValidatableResponse loginCourierOnlyWithPassword(String courierPassword) {
+        return spec()
+                .body(Map.of("password", courierPassword))
+                .when()
+                .post(COURIER_PATH + "/login")
+                .then().log().all();
+    }
+
+    @Step("Login courier with invalid password")
+    public ValidatableResponse loginCourierWithInvalidCreds(CourierCredentials creds) {
+        return spec()
+                .body(creds)
+                .when()
+                .post(COURIER_PATH + "/login")
+                .then().log().all();
+    }
+
     @Step("Create courier")
     public ValidatableResponse createCourier(Courier courier) {
         return spec()
@@ -28,10 +55,11 @@ public class CourierClient extends Specification {
     }
 
     @Step("Delete courier")
-    public Response deleteCourier(int id) {
+    public ValidatableResponse deleteCourier(int id) {
         return spec()
                 .body(Map.of("id", id))
                 .when()
-                .delete(COURIER_PATH + "/" + id);
+                .delete(COURIER_PATH + "/" + id)
+                .then().log().all();
     }
 }

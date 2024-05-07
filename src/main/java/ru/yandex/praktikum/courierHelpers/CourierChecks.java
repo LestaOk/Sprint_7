@@ -1,14 +1,12 @@
 package ru.yandex.praktikum.courierHelpers;
 
 import io.qameta.allure.Step;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 
 import java.net.HttpURLConnection;
 
 import static org.junit.Assert.*;
-import static ru.yandex.praktikum.constants.ValidationMessages.CREATION_CONFLICT;
-import static ru.yandex.praktikum.constants.ValidationMessages.MISSING_DATA;
+import static ru.yandex.praktikum.constants.ValidationMessages.*;
 
 public class CourierChecks {
     @Step("Check that courier logged in successfully")
@@ -36,9 +34,8 @@ public class CourierChecks {
     }
 
     @Step("Check that courier was deleted successfully")
-    public void deletedSuccessfully(Response deleteResponse) {
+    public void deletedSuccessfully(ValidatableResponse deleteResponse) {
         boolean deleted = deleteResponse
-                .then()
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .extract()
@@ -49,22 +46,45 @@ public class CourierChecks {
 
     @Step("Check that courier creation with existing login returns error")
     public void conflictOnCreation(ValidatableResponse createResponse) {
-        String conflicted = createResponse
+        String responseMessage = createResponse
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_CONFLICT)
                 .extract()
                 .path("message");
 
-        assertEquals(CREATION_CONFLICT, conflicted);
+        assertEquals(CREATION_CONFLICT, responseMessage);
     }
 
-    public void missingData(ValidatableResponse createResponse) {
-        String missingData = createResponse
+    @Step("Check that courier creation without all mandatory fields returns error")
+    public void missingDataOnCreation(ValidatableResponse createResponse) {
+        String responseMessage = createResponse
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
                 .extract()
                 .path("message");
 
-        assertEquals(MISSING_DATA, missingData);
+        assertEquals(MISSING_DATA_ON_CREATION, responseMessage);
+    }
+
+    @Step("Check that courier login without all mandatory parameters returns error")
+    public void missingDataOnLogin(ValidatableResponse createResponse) {
+        String responseMessage = createResponse
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
+                .extract()
+                .path("message");
+
+        assertEquals(MISSING_DATA_ON_LOGIN, responseMessage);
+    }
+
+    @Step("Check that courier login with incorrect credentials returns error")
+    public void incorrectDataOnLogin(ValidatableResponse createResponse) {
+        String responseMessage = createResponse
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_NOT_FOUND)
+                .extract()
+                .path("message");
+
+        assertEquals(ACCOUNT_NOT_FOUND, responseMessage);
     }
 }
