@@ -33,7 +33,7 @@ public class OrderChecks {
     public void orderListIsEmpty(ValidatableResponse orders) {
         orders.assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
-                .body("orders", nullValue());
+                .body("orders.size()", equalTo(0));
     }
 
     @Step("Check that orders list size is equal to the specified limit")
