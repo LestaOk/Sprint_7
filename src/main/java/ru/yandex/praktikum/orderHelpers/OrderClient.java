@@ -23,7 +23,24 @@ public class OrderClient extends Specification {
         return spec()
                 .body(Map.of("track", track))
                 .when()
-                .post(ORDER_PATH + "/cancel")
+                .put(ORDER_PATH + "/cancel")
+                .then().log().all();
+    }
+
+    @Step("Get order list by parameters")
+    public ValidatableResponse getOrdersByParameters(Map<String, String> parameters) {
+        return spec()
+                .queryParams(parameters)
+                .when()
+                .get(ORDER_PATH)
+                .then().log().all();
+    }
+
+    @Step("Get order list without parameters")
+    public ValidatableResponse getOrders() {
+        return spec()
+                .when()
+                .get(ORDER_PATH)
                 .then().log().all();
     }
 }

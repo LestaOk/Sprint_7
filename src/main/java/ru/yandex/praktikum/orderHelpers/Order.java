@@ -16,14 +16,14 @@ public class Order {
     private List<String> color;
 
     public Order(List<String> color) {
-        this.firstName = RandomStringUtils.randomAlphabetic(5, 10);
-        this.lastName = RandomStringUtils.randomAlphabetic(5, 12);
-        this.address = RandomStringUtils.randomAlphanumeric(25, 50);
-        this.metroStation = RandomStringUtils.randomAlphabetic(5, 12);
+        this.firstName = RandomStringUtils.randomAlphabetic(5, 8);
+        this.lastName = RandomStringUtils.randomAlphabetic(5, 10);
+        this.address = RandomStringUtils.randomAlphanumeric(25);
+        this.metroStation = RandomStringUtils.randomAlphabetic(5, 10);
         this.phone = "+7" + RandomStringUtils.randomNumeric(10);
         this.rentTime = Integer.parseInt(RandomStringUtils.randomNumeric(2));
         this.deliveryDate = "2024-05-15";
-        this.comment = RandomStringUtils.randomAlphabetic(10, 30);
+        this.comment = RandomStringUtils.randomAlphabetic(0, 30);
         this.color = color;
     }
 

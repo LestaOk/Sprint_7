@@ -13,12 +13,12 @@ import ru.yandex.praktikum.orderHelpers.OrderClient;
 import java.util.List;
 
 @RunWith(Parameterized.class)
-public class CreationParametrizedTest {
+public class OrderCreationParametrizedTest {
     private final List<String> color;
     private final OrderClient client = new OrderClient();
     private final OrderChecks check = new OrderChecks();
     private int track;
-    public CreationParametrizedTest(List<String> color) {
+    public OrderCreationParametrizedTest(List<String> color) {
         this.color = color;
     }
 

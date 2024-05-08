@@ -8,6 +8,8 @@ import java.util.Map;
 import static ru.yandex.praktikum.constants.Config.COURIER_PATH;
 
 public class CourierClient extends Specification {
+    private final CourierChecks check = new CourierChecks();
+
     @Step("Login courier")
     public ValidatableResponse loginCourier(CourierCredentials creds) {
         return spec()
@@ -60,5 +62,13 @@ public class CourierClient extends Specification {
                 .when()
                 .delete(COURIER_PATH + "/" + id)
                 .then().log().all();
+    }
+
+    @Step("Create courier and get id")
+    public int createCourierGetId(Courier courier) {
+        createCourier(courier);
+        var creds = CourierCredentials.from(courier);
+
+        return check.loggedInSuccessfully(loginCourier(creds));
     }
 }

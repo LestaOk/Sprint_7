@@ -6,6 +6,7 @@ public class Courier {
     private String login;
     private String password;
     private String firstName;
+
     public Courier(String login, String password, String firstName) {
         this.login = login;
         this.password = password;
@@ -46,14 +47,6 @@ public class Courier {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public static Courier defaultCourier() {
-        return new Courier(
-                "login123",
-                "password123",
-                "name123"
-        );
     }
 
     public static Courier randomCourier() {

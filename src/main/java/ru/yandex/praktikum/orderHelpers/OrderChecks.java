@@ -5,6 +5,7 @@ import io.restassured.response.ValidatableResponse;
 
 import java.net.HttpURLConnection;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertNotEquals;
 
 public class OrderChecks {
@@ -19,5 +20,26 @@ public class OrderChecks {
         assertNotEquals(0, track);
 
         return track;
+    }
+
+    @Step("Check that order list was returned")
+    public void orderListReturnedSuccessfully(ValidatableResponse orders) {
+        orders.assertThat()
+                .statusCode(HttpURLConnection.HTTP_OK)
+                .body("orders", notNullValue());
+    }
+
+    @Step("Check that no orders were returned")
+    public void orderListIsEmpty(ValidatableResponse orders) {
+        orders.assertThat()
+                .statusCode(HttpURLConnection.HTTP_OK)
+                .body("orders", nullValue());
+    }
+
+    @Step("Check that orders list size is equal to the specified limit")
+    public void orderListByLimit(ValidatableResponse orders, int limit) {
+        orders.assertThat()
+                .statusCode(HttpURLConnection.HTTP_OK)
+                .body("orders.size()", equalTo(limit));
     }
 }

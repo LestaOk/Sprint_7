@@ -17,6 +17,7 @@ public class CourierLoginTest {
     int courierId;
 
     @Before
+    @DisplayName("Create courier for the test")
     public void createCourier() {
         courier = Courier.randomCourier();
         ValidatableResponse createResponse = client.createCourier(courier);
@@ -24,6 +25,7 @@ public class CourierLoginTest {
     }
 
     @After
+    @DisplayName("Delete courier created for the test")
     public void deleteCourier() {
         if (courierId != 0) {
             ValidatableResponse deleted = client.deleteCourier(courierId);
@@ -39,7 +41,8 @@ public class CourierLoginTest {
         courierId = check.loggedInSuccessfully(loginResponse);
     }
 
-    /* Тест ломает сервис - при попытке залогиниться без указания пароля возвращается Service unavailable*/
+    /* Тест ломает сервис - при попытке залогиниться без указания пароля возвращается Service unavailable
+    * */
     @Test
     @DisplayName("Courier couldn't log in without password provided")
     public void courierLoginWithoutProvidedPasswordReturnsError() {
