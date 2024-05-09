@@ -1,7 +1,9 @@
-package ru.yandex.praktikum.courierHelpers;
+package ru.yandex.praktikum.courierhelpers;
 
+import lombok.Data;
 import org.apache.commons.lang3.RandomStringUtils;
 
+@Data
 public class Courier {
     private String login;
     private String password;
@@ -22,30 +24,6 @@ public class Courier {
 
     public Courier(String password, String firstName) {
         this.password = password;
-        this.firstName = firstName;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 

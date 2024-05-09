@@ -1,4 +1,4 @@
-package ru.yandex.praktikum.orderHelpers;
+package ru.yandex.praktikum.orderhelpers;
 
 import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;

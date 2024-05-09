@@ -6,9 +6,9 @@ import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import ru.yandex.praktikum.orderHelpers.Order;
-import ru.yandex.praktikum.orderHelpers.OrderChecks;
-import ru.yandex.praktikum.orderHelpers.OrderClient;
+import ru.yandex.praktikum.orderhelpers.Order;
+import ru.yandex.praktikum.orderhelpers.OrderChecks;
+import ru.yandex.praktikum.orderhelpers.OrderClient;
 
 import java.util.List;
 

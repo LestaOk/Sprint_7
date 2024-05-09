@@ -4,10 +4,10 @@ import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.apache.commons.lang3.RandomUtils;
 import org.junit.Test;
-import ru.yandex.praktikum.courierHelpers.Courier;
-import ru.yandex.praktikum.courierHelpers.CourierClient;
-import ru.yandex.praktikum.orderHelpers.OrderChecks;
-import ru.yandex.praktikum.orderHelpers.OrderClient;
+import ru.yandex.praktikum.courierhelpers.Courier;
+import ru.yandex.praktikum.courierhelpers.CourierClient;
+import ru.yandex.praktikum.orderhelpers.OrderChecks;
+import ru.yandex.praktikum.orderhelpers.OrderClient;
 
 import java.util.HashMap;
 

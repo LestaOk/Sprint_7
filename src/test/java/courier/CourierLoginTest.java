@@ -5,10 +5,10 @@ import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ru.yandex.praktikum.courierHelpers.Courier;
-import ru.yandex.praktikum.courierHelpers.CourierChecks;
-import ru.yandex.praktikum.courierHelpers.CourierClient;
-import ru.yandex.praktikum.courierHelpers.CourierCredentials;
+import ru.yandex.praktikum.courierhelpers.Courier;
+import ru.yandex.praktikum.courierhelpers.CourierChecks;
+import ru.yandex.praktikum.courierhelpers.CourierClient;
+import ru.yandex.praktikum.courierhelpers.CourierCredentials;
 
 public class CourierLoginTest {
     private final CourierClient client = new CourierClient();

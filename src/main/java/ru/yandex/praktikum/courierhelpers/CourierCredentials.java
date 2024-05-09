@@ -1,5 +1,8 @@
-package ru.yandex.praktikum.courierHelpers;
+package ru.yandex.praktikum.courierhelpers;
 
+import lombok.Data;
+
+@Data
 public class CourierCredentials {
     private String login;
     private String password;
@@ -13,21 +16,5 @@ public class CourierCredentials {
 
     public static CourierCredentials from(Courier courier) {
         return new CourierCredentials(courier.getLogin(), courier.getPassword());
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

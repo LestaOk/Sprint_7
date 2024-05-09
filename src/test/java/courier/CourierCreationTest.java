@@ -4,9 +4,9 @@ import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Test;
-import ru.yandex.praktikum.courierHelpers.Courier;
-import ru.yandex.praktikum.courierHelpers.CourierChecks;
-import ru.yandex.praktikum.courierHelpers.CourierClient;
+import ru.yandex.praktikum.courierhelpers.Courier;
+import ru.yandex.praktikum.courierhelpers.CourierChecks;
+import ru.yandex.praktikum.courierhelpers.CourierClient;
 
 public class CourierCreationTest {
     private final CourierClient client = new CourierClient();
